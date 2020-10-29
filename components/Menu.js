@@ -11,29 +11,39 @@ let menuItems = [
 
 function menuMaker(menuItems){
   
+  // creasting individual elements
   const menuDiv = document.createElement('div');
-  menuDiv.classList.add('menu');
-  
   const ulItem = document.createElement('ul');
   
-  menuDiv.appendChild(ulItem)
-
+  // loop to create multiple like elements
   menuItems.forEach(element => {
     let test = document.createElement('li');
     test.textContent = element;
     ulItem.appendChild(test);
   });
 
+  // adding a class called menu to the menuDiv
+  menuDiv.classList.add('menu');
+  
+  // appending a child to the menuDiv
+  menuDiv.appendChild(ulItem)
+
+  // selecting the .menu-button class from the DOM
   const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', function(event){
-    menuButton.classList.add('menu--open')
+
+  // adding an event listner, for a click, on the menuButton
+  menuButton.addEventListener('click', (e) => {
+    menuDiv.classList.toggle('menu--open')
   })
 
+  // returning the component
   return menuDiv;
 }
 
-const test2 = menuMaker(menuItems);
-console.log(test2)
+
+const headerItem = document.querySelector('.header');
+
+headerItem.appendChild(menuMaker(menuItems));
 
 /* 
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
