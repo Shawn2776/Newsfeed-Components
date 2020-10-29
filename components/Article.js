@@ -89,6 +89,60 @@ const data = [
   }
 ];
 
+const articles = document.querySelector('.articles')
+
+
+function articleMaker(data) {
+  
+  // creating each element
+  const article = document.createElement('div');
+  const h2Item = document.createElement('h2');
+  const pDate = document.createElement('p');
+  const pItem1 = document.createElement('p');
+  const pItem2 = document.createElement('p');
+  const pItem3 = document.createElement('p');
+  const spanItem = document.createElement('span');
+
+  // adding classes to elements that require a class
+  article.classList.add('article');
+  pDate.classList.add('date');
+  spanItem.classList.add('expandButton');
+
+  // filling text content of each element, as needed
+  h2Item.textContent = data.title;
+  pDate.textContent = data.date;
+  pItem1.textContent = data.firstParagraph;
+  pItem2.textContent = data.secondParagraph;
+  pItem3.textContent = data.thirdParagraph;
+  spanItem.textContent = '+';
+
+  // appending child elements to parent element
+  article.appendChild(h2Item);
+  article.appendChild(pDate);
+  article.appendChild(pItem1);
+  article.appendChild(pItem2);
+  article.appendChild(pItem3);
+  article.appendChild(spanItem);
+
+  // adding event listener for click on the spanItem
+  spanItem.addEventListener('click', (e) => {
+    article.classList.toggle('article-open')
+  })
+
+  // returning the component
+  return article;
+}
+
+
+const articleObj = data.map((data) => {
+  return articleMaker(data)
+})
+
+articleObj.forEach((articleObj) => {
+  articles.appendChild(articleObj)
+})
+
+
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
